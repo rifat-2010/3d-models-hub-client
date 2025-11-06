@@ -1,12 +1,15 @@
 import toast from "react-hot-toast";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 
 const UpdateModel = () => {
   const data = useLoaderData();
   const model = data.result;
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
+    navigate(`/model-details/${model._id}`)
+
     e.preventDefault();
 
     const formData = {
