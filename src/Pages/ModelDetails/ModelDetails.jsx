@@ -8,6 +8,9 @@ const ModelDetails = () => {
 
   const navigate = useNavigate();
 
+
+
+
   const handleDlete = () => {
     Swal.fire({
       title: "Are you sure?",

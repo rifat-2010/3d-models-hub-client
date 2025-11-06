@@ -18,7 +18,7 @@ export const ModelCard = ({ model }) => {
           {category}
         </div>
         <p className="line-clamp-1">{description}</p>
-        <p className="line-clamp-1 text-[12px] text-black font-bold">
+        <p className="text-xs text-secondary">
           created_by : {created_by}
         </p>
         {/* <p className="text-sm text-base-content/70">by {author}</p> */}

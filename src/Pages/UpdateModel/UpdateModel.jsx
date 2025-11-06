@@ -97,7 +97,7 @@ const UpdateModel = () => {
             <input
               type="url"
               name="thumbnail"
-              defaultValue={model.thumbnail}
+              defaultValue={model.thumbnailUrl}
               required
               className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
               placeholder="https://example.com/image.jpg"
