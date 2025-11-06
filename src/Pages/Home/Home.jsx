@@ -4,7 +4,7 @@ import Banner from "../../components/Banner";
 import { ModelCard } from "../../components/ModelCard";
 const Home = () => {
     const data = useLoaderData()
-    console.log(data)
+    // console.log(data)
     return (
         <div>
             <Banner/>
