@@ -4,44 +4,39 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 
 const AddModal = () => {
-
-  const { user } = use(AuthContext)
+  const { user } = use(AuthContext);
   const navigate = useNavigate();
 
-
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     const formData = {
       name: e.target.name.value,
       category: e.target.category.value,
       description: e.target.description.value,
-      thumbnail: e.target.thumbnail.value,
+      thumbnailUrl: e.target.thumbnail.value,
       created_at: new Date(),
       downloads: 0,
-      created_by: user.email
-    }
+      created_by: user.email,
+    };
 
-    fetch('http://localhost:3000/models', {
+    fetch("http://localhost:3000/models", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData)
+      body: JSON.stringify(formData),
     })
-    .then(res => res.json())
-    .then(data=> {
-      navigate('/all-models')
-      toast.success("Successfully added!")
-      console.log(data)
-    })
-    .catch(err => {
-      console.log(err)
-    })
-   
-
-  }
-
+      .then((res) => res.json())
+      .then((data) => {
+        navigate("/all-models");
+        toast.success("Successfully added!");
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className="card border border-gray-200 bg-base-100 w-full max-w-md mx-auto shadow-2xl rounded-2xl">
@@ -90,7 +85,7 @@ const AddModal = () => {
               name="description"
               required
               rows="3"
-             className="textarea w-full rounded-2xl focus:border-0 focus:outline-gray-200 h-[250px]"
+              className="textarea w-full rounded-2xl focus:border-0 focus:outline-gray-200 h-[250px]"
               placeholder="Enter description"
             ></textarea>
           </div>

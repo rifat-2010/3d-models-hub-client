@@ -144,11 +144,6 @@ const [theme, setTheme] = useState(localStorage.getItem('theme') || "light")
                   <FaDownload /> my_Downloads
                 </Link>
               </li>
-                 <input
-          //  onChange={(e)=> handleTheme(e.target.checked)}
-           type="checkbox"
-           defaultChecked={localStorage.getItem('theme') === "dark"}
-           className="toggle"/>
               <li>
                 <button
                   onClick={signOutUser}
