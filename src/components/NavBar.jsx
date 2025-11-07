@@ -5,13 +5,28 @@ import { IoLogIn, IoLogOut } from "react-icons/io5";
 import { FaGear, FaUser } from "react-icons/fa6";
 import { LuRotate3D } from "react-icons/lu";
 import { ImBoxAdd } from "react-icons/im";
-import { use } from "react";
+import { use, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { FaDownload } from "react-icons/fa6";
 import { FaCartArrowDown } from "react-icons/fa6";
 
 const NavBar = () => {
   const { user, signOutUser } = use(AuthContext);
+
+const [theme, setTheme] = useState(localStorage.getItem('theme') || "light")
+
+  useEffect(() => {
+    const html = document.querySelector('html')
+     html.setAttribute("data-theme", theme)
+     localStorage.setItem("theme", theme)
+  }, [theme])
+
+
+  const handleTheme = (checked) => {
+    console.log(checked)
+    setTheme(checked ? "dark": "light")
+  }
+
   return (
     <div className="navbar py-0 min-h-0 z-1 shadow-sm rounded-full glass-card max-w-7xl">
       <div className="navbar-start">
@@ -83,6 +98,15 @@ const NavBar = () => {
       <div className="navbar-end gap-3">
         {user ? (
           <div className="dropdown dropdown-end z-50">
+        
+        {/* toogle with dark mode and light mode */}
+          <input
+           onChange={(e)=> handleTheme(e.target.checked)}
+           type="checkbox"
+           defaultChecked={localStorage.getItem('theme') === "dark"}
+           className="toggle mr-5"/>
+
+
             <div
               tabIndex={0}
               role="button"
@@ -94,6 +118,7 @@ const NavBar = () => {
                   referrerPolicy="no-referrer"
                   src={user.photoURL || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"}
                 />
+  
               </div>
             </div>
             <ul
@@ -119,12 +144,11 @@ const NavBar = () => {
                   <FaDownload /> my_Downloads
                 </Link>
               </li>
-              <li>
-                <a>
-                  {" "}
-                  <FaGear /> Settings
-                </a>
-              </li>
+                 <input
+          //  onChange={(e)=> handleTheme(e.target.checked)}
+           type="checkbox"
+           defaultChecked={localStorage.getItem('theme') === "dark"}
+           className="toggle"/>
               <li>
                 <button
                   onClick={signOutUser}
