@@ -29,6 +29,8 @@ const ModelDetails = () => {
       });
   }, [user, id, refetch]);
 
+
+  //delet function 
   const handleDlete = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -64,33 +66,39 @@ const ModelDetails = () => {
     });
   };
 
-  const handleDownload = () => {
-    const finalModel = {
-      name: model.name,
-      downloads: model.downloads,
-      created_by: model.created_by,
-      description: model.description,
-      thumbnail: model.thumbnail,
-      created_at: new Date(),
-      downloaded_by: user.email,
-    };
 
-    fetch(`https://3d-model-server.vercel.app/downloads/${model._id}`, {
+  // download function
+  const handleDownload = () => {
+    // const finalModel = {
+    //   name: model.name,
+    //   downloads: model.downloads,
+    //   created_by: model.created_by,
+    //   description: model.description,
+    //   thumbnail: model.thumbnail,
+    //   created_at: new Date(),
+    //   downloaded_by: user.email,
+    // };
+
+    // fetch(`http://localhost:3000/models/downloads/${model._id}`, {
+    fetch(`http://localhost:3000/downloads`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(finalModel),
+    body: JSON.stringify({...model, created_by: user}),
+      // body: JSON.stringify(finalModel),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         toast.success("Successfully downloaded!");
-        setRefecth(!refetch)
+        // setRefecth(!refetch)
+
+        
 
         // alternative solution of realtime download count update
 
-    //     fetch(`https://3d-model-server.vercel.app/models/${id}`, {
+    //     fetch(`http://localhost:3000/models/${id}`, {
     //   headers: {
     //     authorization: `Bearer ${user.accessToken}`,
     //   },
