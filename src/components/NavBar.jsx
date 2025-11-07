@@ -107,6 +107,11 @@ const NavBar = () => {
                   <FaUser /> Profile
                 </Link>
               </li>
+              <li className="mt-3">
+                <Link to={"/my-models"}>
+                  <FaUser /> my_Models
+                </Link>
+              </li>
               <li>
                 <a>
                   {" "}

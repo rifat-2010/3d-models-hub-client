@@ -1,5 +1,6 @@
 import { use } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import toast from "react-hot-toast";
 
 const AddModal = () => {
 
@@ -28,6 +29,7 @@ const AddModal = () => {
     })
     .then(res => res.json())
     .then(data=> {
+      toast.success("Successfully added!")
       console.log(data)
     })
     .catch(err => {
