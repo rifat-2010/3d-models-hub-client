@@ -1,3 +1,4 @@
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { useLoaderData, useNavigate } from "react-router";
 import Swal from "sweetalert2";
@@ -6,6 +7,8 @@ const UpdateModel = () => {
   const data = useLoaderData();
   const model = data.result;
   const navigate = useNavigate();
+    // for live instant update
+    const [refetch, setRefecth] = useState(false)
 
   const handleSubmit = (e) => {
     navigate(`/model-details/${model._id}`)
@@ -29,6 +32,8 @@ const UpdateModel = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        // for live instant update
+        setRefecth(!refetch)
         toast.success("Successfully updated!");
       })
       .catch((err) => {

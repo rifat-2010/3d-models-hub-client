@@ -7,6 +7,8 @@ import { LuRotate3D } from "react-icons/lu";
 import { ImBoxAdd } from "react-icons/im";
 import { use } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { FaDownload } from "react-icons/fa6";
+import { FaCartArrowDown } from "react-icons/fa6";
 
 const NavBar = () => {
   const { user, signOutUser } = use(AuthContext);
@@ -107,9 +109,14 @@ const NavBar = () => {
                   <FaUser /> Profile
                 </Link>
               </li>
-              <li className="mt-3">
+              <li>
                 <Link to={"/my-models"}>
-                  <FaUser /> my_Models
+                  <FaCartArrowDown /> my_Models
+                </Link>
+              </li>
+              <li>
+                <Link to={"/my-downloads"}>
+                  <FaDownload /> my_Downloads
                 </Link>
               </li>
               <li>

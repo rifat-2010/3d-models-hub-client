@@ -42,7 +42,7 @@ const ModelDetails = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://3d-model-server.vercel.app/models/${model._id}`, {
+        fetch(`http://localhost:3000/models/${model._id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -69,30 +69,29 @@ const ModelDetails = () => {
 
   // download function
   const handleDownload = () => {
-    // const finalModel = {
-    //   name: model.name,
-    //   downloads: model.downloads,
-    //   created_by: model.created_by,
-    //   description: model.description,
-    //   thumbnail: model.thumbnail,
-    //   created_at: new Date(),
-    //   downloaded_by: user.email,
-    // };
+    const finalModel = {
+      name: model.name,
+      downloads: model.downloads,
+      created_by: model.created_by,
+      description: model.description,
+      thumbnail: model.thumbnail,
+      created_at: new Date(),
+      downloaded_by: user.email,
+    };
 
-    // fetch(`http://localhost:3000/models/downloads/${model._id}`, {
-    fetch(`http://localhost:3000/downloads`, {
+    fetch(`http://localhost:3000/models/downloads/${model._id}`, {
+    // fetch(`http://localhost:3000/downloads`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-    body: JSON.stringify({...model, created_by: user}),
-      // body: JSON.stringify(finalModel),
+      body: JSON.stringify(finalModel),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         toast.success("Successfully downloaded!");
-        // setRefecth(!refetch)
+        setRefecth(!refetch)
 
         
 

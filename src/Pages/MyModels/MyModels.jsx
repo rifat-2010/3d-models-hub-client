@@ -34,7 +34,7 @@ const MyModels = () => {
       <div className="grid grid-cols-3 lg:grid-cols-4 gap-3">
          {models.map(model => <ModelCard key={model._id} model={model}/>)}
       </div>
-            rifat
+
         </div>
     );
 };
